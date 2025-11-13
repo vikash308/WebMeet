@@ -25,7 +25,7 @@ app.use("/api/v1/users",userRouter)
 const port = process.env.PORT;
 const url = process.env.MONGO_URL;
 
-const path = require("path");
+import path from "node:path";
 app.use(express.static(path.join(__dirname, "frontend"))); 
 app.use((req, res) => {
     res.sendFile(path.join(__dirname, "frontend", "index.html"));
