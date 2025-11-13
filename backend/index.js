@@ -25,6 +25,8 @@ app.use("/api/v1/user",userRouter)
 const port = process.env.PORT;
 const url = process.env.MONGO_URL;
 
+
+
 async function start() {
     await mongoose.connect(url);
     console.log("DB connected")
