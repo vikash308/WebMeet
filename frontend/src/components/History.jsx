@@ -71,7 +71,7 @@ export default function History() {
           );
         })
       ) : (
-        <></>
+        <> <h1>No meetings </h1></>
       )}
     </div>
   );

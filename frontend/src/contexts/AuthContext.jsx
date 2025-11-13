@@ -65,6 +65,7 @@ export const AuthProvider = ({ children }) => {
                     token: localStorage.getItem("token")
                 }
             });
+            console.log(request.data)
             return request.data
         } catch
          (err) {

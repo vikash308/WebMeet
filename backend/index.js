@@ -14,7 +14,7 @@ import userRouter from "./routes/user.routes.js"
 
 
 app.use(cors({
-    origin: "https://videocall-frontend-guue.onrender.com",
+    origin: ["https://videocall-frontend-guue.onrender.com", "http://localhost:5173"],
     credentials: true
 }));
 app.use(express.json({limit:"40kb"}))
