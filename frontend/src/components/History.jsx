@@ -55,14 +55,27 @@ export default function History() {
               <Card key={i} variant="outlined">
                 <CardContent>
                   <Typography
+                    style={{
+                      backgroundColor: "#000",
+                      padding: "0.5rem ",
+                      borderRadius: "10px",
+                    }}
                     sx={{ fontSize: 14 }}
-                    color="text.secondary"
+                    color="#000"
                     gutterBottom
                   >
                     Code: {e.meetingCode}
                   </Typography>
 
-                  <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                  <Typography
+                    style={{
+                      backgroundColor: "#000",
+                      padding: "0.5rem ",
+                      borderRadius: "10px",
+                    }}
+                    sx={{ mb: 1.5 }}
+                    color="#000"
+                  >
                     Date: {formatDate(e.date)}
                   </Typography>
                 </CardContent>
