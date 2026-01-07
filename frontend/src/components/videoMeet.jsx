@@ -31,7 +31,7 @@ const peerConfigConnections = {
 export default function VideoMeetComponent() {
   const socketRef = useRef(null);
   const socketIdRef = useRef(null);
-
+  
   const localVideoref = useRef(null);
   const videoRef = useRef([]); // keep current videos
 
@@ -458,7 +458,7 @@ export default function VideoMeetComponent() {
     try {
       socketRef.current?.disconnect();
     } catch (e) {}
-    window.location.href = "/";
+    window.location.href = "/home";
   };
 
   const addMessage = (data, sender, socketIdSender) => {
@@ -471,7 +471,6 @@ export default function VideoMeetComponent() {
   const sendMessage = () => {
     if (!message || !socketRef.current) return;
     socketRef.current.emit("chat-message", message, username);
-    setMessages((prev) => [...prev, { sender: username, data: message }]);
     setMessage("");
   };
 

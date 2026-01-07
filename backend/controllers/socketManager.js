@@ -4,6 +4,8 @@ import { Server } from "socket.io"
 let connections = {}
 let messages = {}
 let timeOnline = {}
+let users = {}   
+
 
 export const connectToSocket = (server) => {
     const io = new Server(server, {
@@ -20,7 +22,9 @@ export const connectToSocket = (server) => {
 
         console.log("SOMETHING CONNECTED")
 
-        socket.on("join-call", (path) => {
+        socket.on("join-call", (path, username) => {
+            socket.username = username;
+            users[socket.id] = username;
 
             if (connections[path] === undefined) {
                 connections[path] = []
@@ -34,15 +38,22 @@ export const connectToSocket = (server) => {
             // })
 
             for (let a = 0; a < connections[path].length; a++) {
-                io.to(connections[path][a]).emit("user-joined", socket.id, connections[path])
+                io.to(connections[path][a]).emit("user-joined", socket.id,socket.username, connections[path])
             }
 
             if (messages[path] !== undefined) {
                 for (let a = 0; a < messages[path].length; ++a) {
-                    io.to(socket.id).emit("chat-message", messages[path][a]['data'],
-                        messages[path][a]['sender'], messages[path][a]['socket-id-sender'])
+                    const senderSocketId = messages[path][a]['socket-id-sender'];
+
+                    io.to(socket.id).emit(
+                        "chat-message",
+                        messages[path][a].data,
+                        users[senderSocketId] || "Guest",
+                        senderSocketId
+                    );
                 }
             }
+
 
         })
 
@@ -84,6 +95,8 @@ export const connectToSocket = (server) => {
             var diffTime = Math.abs(timeOnline[socket.id] - new Date())
 
             var key
+            delete users[socket.id];
+
 
             for (const [k, v] of JSON.parse(JSON.stringify(Object.entries(connections)))) {
 
