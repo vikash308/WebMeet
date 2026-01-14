@@ -1,6 +1,10 @@
-# Apna Video Call — Backend
+# WebMeet
 
-A production-ready backend for **VideoCall** built with **Node.js**, **Express**, **Socket.io**, **Reactjs** and **WebRTC** (signaling), with **JWT** authentication and **MongoDB** storage.
+A real-time video calling application frontend built with modern web technologies — enabling users to connect via peer-to-peer video streams.
+
+This frontend is designed to work with a WebRTC signaling backend (e.g., Socket.IO / NodeJS server) to establish real-time video communication between users.
+
+[🚀 Live Demo](https://videocall-frontend-guue.onrender.com)
 
 ---
 
